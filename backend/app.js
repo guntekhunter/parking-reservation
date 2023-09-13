@@ -1,11 +1,16 @@
 const express = require("express");
+const dotenv = require("dotenv");
 const app = express();
-const port = process.env.PORT || 3000;
 
-//route
-app.get("/", (req, res) => {
-  res.send("Hello, Express!");
-});
+dotenv.config();
+
+const port = process.env.PORT;
+
+// import controller
+const userController = require("./src/user/user.controller");
+
+//routes
+app.use("/users", userController);
 
 // Start the server
 app.listen(port, () => {
