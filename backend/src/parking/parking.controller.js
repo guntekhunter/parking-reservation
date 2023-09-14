@@ -1,23 +1,22 @@
 const express = require("express");
-const prisma = require("../db/index");
-const { getAllUser } = require("./user.services");
-const { postUser } = require("./user.services");
+const { getAllParking } = require("./parking.services");
+const { postParkingSpots } = require("./parking.services");
 
 const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const users = await getAllUser();
-    res.send(users);
+    const parking = await getAllParking();
+    res.send(parking);
   } catch (err) {
     res.status(400).send(err.message);
   }
 });
 router.post("/", async (req, res) => {
   try {
-    const newUserData = req.body;
-    const user = await postUser(newUserData);
-    res.send(user);
+    const newPrkingSpots = req.body;
+    const parkingSpots = await postParkingSpots(newPrkingSpots);
+    res.send(parkingSpots);
   } catch (err) {
     res.status(400).send(err.message);
   }

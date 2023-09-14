@@ -8,5 +8,22 @@ async function getAllUser() {
   }
   return users;
 }
+async function postUser(newUserData) {
+  console.log(newUserData);
+  const user = await prisma.user.create({
+    data: {
+      email: newUserData.email,
+      name: newUserData.name,
+      password: newUserData.password,
+      phone_number: newUserData.phone_number,
+      isOfficer: newUserData.isOfficer,
+    },
+  });
 
-module.exports = getAllUser;
+  if (!user) {
+    throw Error("user Not Found");
+  }
+  return user;
+}
+
+module.exports = { getAllUser, postUser };
