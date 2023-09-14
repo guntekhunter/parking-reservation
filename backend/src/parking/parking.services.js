@@ -4,25 +4,37 @@ async function getAllParking() {
   const users = await prisma.parking_spots.findMany();
 
   if (!users) {
-    throw Error("Users Not Found");
+    throw Error("Parkings Spots Not Found");
   }
   return users;
 }
-async function postParkingSpots(newPrkingSpots) {
-  console.log(newPrkingSpots);
+async function getOneParking(parking_id) {
+  const users = await prisma.parking_spots.findFirst({
+    where: {
+      id: parking_id,
+    },
+  });
+
+  if (!users) {
+    throw Error("Parking Spots Not Found");
+  }
+  return users;
+}
+async function postParkingSpots(newParkingSpots) {
+  console.log(newParkingSpots);
   const user = await prisma.parking_spots.create({
     data: {
-      name: newPrkingSpots.name,
-      location: newPrkingSpots.location,
-      capacity: newPrkingSpots.capacity,
-      isAvailable: newPrkingSpots.isAvailable,
+      name: newParkingSpots.name,
+      location: newParkingSpots.location,
+      capacity: newParkingSpots.capacity,
+      isAvailable: newParkingSpots.isAvailable,
     },
   });
 
   if (!user) {
-    throw Error("user Not Found");
+    throw Error("Parking Spots Not Found");
   }
   return user;
 }
 
-module.exports = { getAllParking, postParkingSpots };
+module.exports = { getAllParking, getOneParking, postParkingSpots };

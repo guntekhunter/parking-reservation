@@ -10,14 +10,14 @@ async function getAllReservation() {
 }
 
 async function getOneReservation(id) {
-  const users = await prisma.reservation.findFirst({
+  const reservation = await prisma.reservation.findFirst({
     where: { id: id },
   });
 
-  if (!users) {
-    throw Error("Users Not Found");
+  if (!reservation) {
+    throw Error("Reservation Not Found");
   }
-  return users;
+  return reservation;
 }
 async function postReservation(newReservationData) {
   console.log(newReservationData);
