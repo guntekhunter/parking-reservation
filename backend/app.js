@@ -12,11 +12,13 @@ const port = process.env.PORT;
 const userController = require("./src/user/user.controller");
 const parkingController = require("./src/parking/parking.controller");
 const reservationController = require("./src/reservation/reservation.controller");
+const paymentController = require("./src/payment/payment.controller");
 
 //routes
 app.use("/users", userController);
 app.use("/parking", parkingController);
 app.use("/reservation", reservationController);
+app.use("/payment", paymentController);
 
 // Start the server
 app.listen(port, () => {
