@@ -14,6 +14,7 @@ router.get("/", async (req, res) => {
     res.status(400).send(err.message);
   }
 });
+
 router.get("/:id", async (req, res) => {
   try {
     const parking_id = parseInt(req.params.id);
@@ -23,6 +24,7 @@ router.get("/:id", async (req, res) => {
     res.status(400).send(err.message);
   }
 });
+
 router.post("/", async (req, res) => {
   try {
     const newParkingSpots = req.body;
@@ -32,6 +34,7 @@ router.post("/", async (req, res) => {
     res.status(400).send(err.message);
   }
 });
+
 router.delete("/:id", async (req, res) => {
   try {
     const parking_id = parseInt(req.params.id);
