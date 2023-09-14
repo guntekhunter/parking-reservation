@@ -56,9 +56,23 @@ async function putReservation(reservation_id, newReservationData) {
   return reservation;
 }
 
+async function deleteReservation(reservation_id) {
+  const reservation = await prisma.reservation.delete({
+    where: {
+      id: reservation_id,
+    },
+  });
+
+  if (!reservation) {
+    throw Error("reservation Not Found");
+  }
+  return reservation;
+}
+
 module.exports = {
   getAllReservation,
   getOneReservation,
   postReservation,
   putReservation,
+  deleteReservation,
 };

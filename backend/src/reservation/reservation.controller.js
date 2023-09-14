@@ -1,9 +1,9 @@
 const express = require("express");
-const prisma = require("../db/index");
 const { getAllReservation } = require("./reservation.services");
 const { getOneReservation } = require("./reservation.services");
 const { postReservation } = require("./reservation.services");
 const { putReservation } = require("./reservation.services");
+const { deleteReservation } = require("./reservation.services");
 
 const router = express.Router();
 
@@ -42,6 +42,15 @@ router.put("/:id", async (req, res) => {
       reservation_id,
       newReservationData
     );
+    res.send(reservation);
+  } catch (err) {
+    res.status(400).send(err.message);
+  }
+});
+router.delete("/:id", async (req, res) => {
+  try {
+    const reservation_id = parseInt(req.params.id);
+    const reservation = await deleteReservation(reservation_id);
     res.send(reservation);
   } catch (err) {
     res.status(400).send(err.message);

@@ -26,4 +26,17 @@ async function postUser(newUserData) {
   return user;
 }
 
-module.exports = { getAllUser, postUser };
+async function deleteUser(user_id) {
+  const user = await prisma.user.delete({
+    where: {
+      id: user_id,
+    },
+  });
+
+  if (!user) {
+    throw Error("User Spots Not Found");
+  }
+  return user;
+}
+
+module.exports = { getAllUser, postUser, deleteUser };
