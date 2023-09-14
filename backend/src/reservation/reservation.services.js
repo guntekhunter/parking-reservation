@@ -20,8 +20,27 @@ async function getOneReservation(id) {
   return reservation;
 }
 async function postReservation(newReservationData) {
-  console.log(newReservationData);
   const reservation = await prisma.reservation.create({
+    data: {
+      user_id: newReservationData.user_id,
+      parking_spot_id: newReservationData.parking_spot_id,
+      start_date: newReservationData.start_date,
+      end_date: newReservationData.end_date,
+      payment_status: newReservationData.payment_status,
+    },
+  });
+
+  if (!reservation) {
+    throw Error("failed to make reservation");
+  }
+  return reservation;
+}
+
+async function putReservation(reservation_id, newReservationData) {
+  const reservation = await prisma.reservation.update({
+    where: {
+      id: reservation_id,
+    },
     data: {
       user_id: newReservationData.user_id,
       parking_spot_id: newReservationData.parking_spot_id,
@@ -37,4 +56,9 @@ async function postReservation(newReservationData) {
   return reservation;
 }
 
-module.exports = { getAllReservation, getOneReservation, postReservation };
+module.exports = {
+  getAllReservation,
+  getOneReservation,
+  postReservation,
+  putReservation,
+};
