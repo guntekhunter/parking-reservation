@@ -24,6 +24,7 @@ async function postReservation(newReservationData) {
     data: {
       user_id: newReservationData.user_id,
       parking_spot_id: newReservationData.parking_spot_id,
+      parking_place_id: newReservationData.parking_place_id,
       start_date: newReservationData.start_date,
       end_date: newReservationData.end_date,
       payment_status: newReservationData.payment_status,

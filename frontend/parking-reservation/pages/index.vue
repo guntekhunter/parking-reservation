@@ -30,7 +30,7 @@
       </div>
       <div class="flex justify-around pt-[1rem]">
         <NuxtLink
-          to="/parking-spots"
+          to="/parking-places"
           onClick="{loginHandler}"
           class="px-[1rem] rounded-md bg-[#793FDF] text-white w-full h-[2.5rem] hover:bg-[#793FDF] flex justify-around items-center"
         >
