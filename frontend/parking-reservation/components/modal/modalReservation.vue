@@ -58,10 +58,9 @@
 <script setup>
 import { ref, defineProps } from "vue";
 
-// handleButtonClick = () => {
-//   this.$emit("close");
-//   this.$emit("confirm");
-// };
+const { placeId, spotId } = defineProps(["placeId", "spotId"]);
+
+console.log(placeId, spotId);
 </script>
 
 

@@ -1,7 +1,13 @@
 <template>
   <div class="w-full justify-center flex">
     <modal-confirm v-if="confirmed" />
-    <modal-reservation v-if="show" @close="closeConfirm" @confirm="confirm" />
+    <modal-reservation
+      v-if="show"
+      @close="closeConfirm"
+      @confirm="confirm"
+      :placeId="placeId"
+      :spotId="spotId"
+    />
     <div class="w-[80%] py-5 space-y-5">
       <div>
         <NuxtLink to="/parking-places">Back</NuxtLink>
@@ -14,13 +20,10 @@
         <Card
           v-for="p in parkingSpots"
           :key="p.id"
-          @click="showModal"
+          @click="showModal(p.id)"
           :name="p.name"
-          location="malakaji"
-          capacity="200"
           :isAvailable="p.isAvailable"
-          >ahhay</Card
-        >
+        />
       </div>
     </div>
   </div>
@@ -37,9 +40,11 @@ definePageMeta({
 });
 const { id } = useRoute().params;
 const placeId = parseInt(id);
+const spotId = ref(null);
 
-const showModal = () => {
+const showModal = (id) => {
   show.value = true;
+  spotId.value = id;
 };
 const closeConfirm = () => {
   show.value = false;

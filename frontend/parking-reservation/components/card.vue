@@ -21,7 +21,7 @@
       :class="{ hidden: show, '': !show }"
     >
       <div class="w-full flex justify-center text-[1.5rem] font-bold">
-        {{ name }}
+        {{ name.toUpperCase() }}
       </div>
     </div>
   </div>
@@ -39,7 +39,7 @@ const { name, location, capacity, isAvailable } = defineProps([
 
 let show = false;
 
-if (isAvailable === "available") {
+if (!isAvailable) {
   show = true;
 }
 </script>
