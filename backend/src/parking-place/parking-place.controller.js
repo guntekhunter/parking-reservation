@@ -6,10 +6,14 @@ const { deleteParking } = require("./parking-place.services");
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/spots/:id", async (req, res) => {
   try {
-    const parking = await getAllParking();
-    res.send(parking);
+    const parking_id = parseInt(req.params.id);
+    const parking = await getAllParking(parking_id);
+    res.status(200).json({
+      data: parking.parking,
+      spots: parking.spots,
+    });
   } catch (err) {
     res.status(400).send(err.message);
   }
