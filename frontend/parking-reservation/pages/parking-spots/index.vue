@@ -71,4 +71,5 @@ import Card from "../../components/card.vue";
 definePageMeta({
   layout: "default",
 });
+
 </script>

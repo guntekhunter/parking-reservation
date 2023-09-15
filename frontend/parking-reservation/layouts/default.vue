@@ -9,10 +9,10 @@
             <p class="font-bold flex items-center">PARKING</p>
             <div class="flex items-center space-x-[2rem]">
               <NuxtLink
-                to="/parking-spots"
+                to="/parking-places"
                 class="cursor-pointer transform duration-200 ease-in px-[1rem] hover:shadow-md rounded-md"
               >
-                Parking-spots
+                Parking Places
               </NuxtLink>
               <NuxtLink
                 to="/history"

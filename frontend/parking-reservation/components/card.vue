@@ -26,5 +26,4 @@ let show = false;
 if (isAvailable === "available") {
   show = true;
 }
-console.log(show);
 </script>
