@@ -1,30 +1,60 @@
 <template>
   <div class="w-full justify-center flex">
     <div class="w-[80%] py-5">
-      <div class="grid grid-cols-4 grid-flow-col gap-4">
+      <div
+        class="grid grid-cols-6 gap-y-[4rem] divide-x-2 divide-dashed divide-gray-200 divide-current"
+      >
         <Card
-          name="C1"
+          name="A-1"
           location="malakaji"
           capacity="200"
           isAvailable="available"
           >ahhay</Card
         >
         <Card
-          name="C2"
+          name="A-2"
           location="malakaji"
           capacity="200"
           isAvailable="available"
           >ahhay</Card
         >
         <Card
-          name="C3"
+          name="A-3"
           location="malakaji"
           capacity="200"
           isAvailable="available"
           >ahhay</Card
         >
         <Card
-          name="C4"
+          name="A-4"
+          location="malakaji"
+          capacity="200"
+          isAvailable="not available"
+          >ahhay</Card
+        >
+        <Card
+          name="A-4"
+          location="malakaji"
+          capacity="200"
+          isAvailable="not available"
+          >ahhay</Card
+        >
+        <Card
+          name="A-4"
+          location="malakaji"
+          capacity="200"
+          isAvailable="not available"
+          >ahhay</Card
+        >
+        <Card
+          name="A-4"
+          location="malakaji"
+          capacity="200"
+          isAvailable="not available"
+          >ahhay</Card
+        >
+        <Card
+          name="A-4"
           location="malakaji"
           capacity="200"
           isAvailable="not available"

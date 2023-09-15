@@ -1,13 +1,13 @@
 <template>
   <div
-    :class="{ 'bg-blue-200': show, 'bg-green-200': !show }"
-    class="rounded-md shadow-md p-5"
+    :class="{ 'hover:bg-gray-200': show, 'bg-gray-100 opacity-70': !show }"
+    class="p-5 duration-200 border-dashed border-t-2"
   >
-    <div>{{ name }}</div>
-    <div>{{ location }}</div>
-    <div>{{ capacity }}</div>
-    <div>{{ isAvailable }}</div>
-    <slot />
+    <div class="bg-gray-400 p-y-[4rem] h-[10rem] items-center flex">
+      <div class="w-full flex justify-center text-[1.5rem] font-bold">
+        {{ name }}
+      </div>
+    </div>
   </div>
 </template>
 
