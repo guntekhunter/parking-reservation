@@ -4,68 +4,21 @@
     <modal-reservation v-if="show" @close="closeConfirm" @confirm="confirm" />
     <div class="w-[80%] py-5 space-y-5">
       <div>
+        <NuxtLink to="/parking-places">Back</NuxtLink>
         <div class="font-bold text-[1.5rem]">PEJATEN</div>
         <div class="text-[1rem]">Jl. Malakaji jawa tengah</div>
       </div>
       <div
         class="grid grid-cols-6 gap-y-[4rem] divide-x-2 divide-dashed divide-gray-200 divide-current"
       >
-        <div @click="showModal">
-          <Card
-            name="A-1"
-            location="malakaji"
-            capacity="200"
-            isAvailable="available"
-            >ahhay</Card
-          >
-        </div>
         <Card
-          name="A-2"
+          v-for="p in parkingSpots"
+          :key="p.id"
+          @click="showModal"
+          :name="p.name"
           location="malakaji"
           capacity="200"
-          isAvailable="available"
-          >ahhay</Card
-        >
-        <Card
-          name="A-3"
-          location="malakaji"
-          capacity="200"
-          isAvailable="available"
-          >ahhay</Card
-        >
-        <Card
-          name="A-4"
-          location="malakaji"
-          capacity="200"
-          isAvailable="not available"
-          >ahhay</Card
-        >
-        <Card
-          name="A-4"
-          location="malakaji"
-          capacity="200"
-          isAvailable="not available"
-          >ahhay</Card
-        >
-        <Card
-          name="A-4"
-          location="malakaji"
-          capacity="200"
-          isAvailable="not available"
-          >ahhay</Card
-        >
-        <Card
-          name="A-4"
-          location="malakaji"
-          capacity="200"
-          isAvailable="not available"
-          >ahhay</Card
-        >
-        <Card
-          name="A-4"
-          location="malakaji"
-          capacity="200"
-          isAvailable="not available"
+          :isAvailable="p.isAvailable"
           >ahhay</Card
         >
       </div>
@@ -83,6 +36,7 @@ definePageMeta({
   layout: "default",
 });
 const { id } = useRoute().params;
+const placeId = parseInt(id);
 
 const showModal = () => {
   show.value = true;
@@ -98,5 +52,11 @@ const confirm = () => {
     confirmed.value = false;
   }, 3000);
 };
+
+const { pending, data: parkingSpots } = useLazyFetch(
+  "http://localhost:3001/parking/parking-spots/" + placeId
+);
+
+console.log(parkingSpots);
 </script>
   

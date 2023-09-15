@@ -1,60 +1,28 @@
+
 <template>
   <div class="flex w-full justify-center">
     <div class="w-[80%] py-5">
-      <div class="grid grid-cols-3 gap-4">
+      <div v-if="parkingSpots" class="grid grid-cols-3 gap-4">
         <CardPlace
-          id="1"
-          name="Pejanten"
-          location="jl.Restika Indah"
-          amount="2000"
-          capacity="10"
-          image="1.jpg"
-        />
-        <CardPlace
-          id="2"
-          name="Pejanten"
-          location="jl.Restika Indah"
-          amount="2000"
-          capacity="10"
-          image="1.jpg"
-        />
-        <CardPlace
-          id="3"
-          name="Pejanten"
-          location="jl.Restika Indah"
-          amount="2000"
-          capacity="10"
-          image="1.jpg"
-        />
-        <CardPlace
-          id="4"
-          name="Pejanten"
-          location="jl.Restika Indah"
-          amount="2000"
-          capacity="10"
-          image="1.jpg"
-        />
-        <CardPlace
-          id="5"
-          name="Pejanten"
-          location="jl.Restika Indah"
-          amount="2000"
-          capacity="10"
-          image="1.jpg"
-        />
-        <CardPlace
-          id="6"
-          name="Pejanten"
-          location="jl.Restika Indah"
-          amount="2000"
-          capacity="10"
-          image="1.jpg"
+          v-for="p in parkingSpots"
+          :key="p.id"
+          :id="p.id"
+          :name="p.name"
+          :location="p.location"
+          :amount="p.amount"
+          :capacity="p.capacity"
+          :image="p.image"
         />
       </div>
+      <div v-else>Loading data...</div>
     </div>
   </div>
 </template>
-
 <script setup>
 import CardPlace from "../../components/cardPlace.vue";
+
+const { pending, data: parkingSpots } = useLazyFetch(
+  "http://localhost:3001/parking-place"
+);
 </script>
+

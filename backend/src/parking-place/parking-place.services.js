@@ -1,11 +1,7 @@
 const prisma = require("../db/index");
 
-async function getAllParking(parking_id) {
-  const parking = await prisma.parking_spots.findMany({
-    where: {
-      id_parking_place: parking_id,
-    },
-  });
+async function getAllParking() {
+  const parking = await prisma.parking_places.findMany();
 
   if (!parking) {
     throw Error("Parkings Spots Not Found");

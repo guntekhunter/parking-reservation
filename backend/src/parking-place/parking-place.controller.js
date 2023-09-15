@@ -1,15 +1,14 @@
 const express = require("express");
-const { getAllParking } = require("./parking.services");
-const { getOneParking } = require("./parking.services");
-const { postParkingSpots } = require("./parking.services");
-const { deleteParking } = require("./parking.services");
+const { getAllParking } = require("./parking-place.services");
+const { getOneParking } = require("./parking-place.services");
+const { postParkingSpots } = require("./parking-place.services");
+const { deleteParking } = require("./parking-place.services");
 
 const router = express.Router();
 
-router.get("/parking-spots/:id", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const parking_id = parseInt(req.params.id);
-    const parking = await getAllParking(parking_id);
+    const parking = await getAllParking();
     res.send(parking);
   } catch (err) {
     res.status(400).send(err.message);
