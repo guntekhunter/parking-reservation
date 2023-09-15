@@ -94,6 +94,9 @@ const closeConfirm = () => {
 const confirm = () => {
   confirmed.value = true;
   show.value = false;
+  setTimeout(() => {
+    confirmed.value = false;
+  }, 3000);
 };
 </script>
   
