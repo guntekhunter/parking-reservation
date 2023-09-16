@@ -48,25 +48,24 @@ data for database
 users:
 {
         "id": 1,
-        "email": "agunghaeruddin270@gmail.com",
-        "name": "Agung",
-        "password": "12345",
-        "phone_number": 1231239999,
+        "email": "agunghaeruddin@gmail.com",
+        "name": "agung",
+        "password": "123456",
+        "phone_number": 1231123,
         "isOfficer": false,
-        "createdAt": "2023-09-15T12:42:26.335Z",
-        "updatedAt": "2023-09-15T12:42:53.461Z"
+        "createdAt": "2023-09-16T10:23:38.560Z",
+        "updatedAt": "2023-09-16T10:23:38.560Z"
     },
     {
         "id": 2,
-        "email": "samsul@gmail.com",
-        "name": "Samsul",
-        "password": "admin",
-        "phone_number": 1231235346,
+        "email": "samsulrijal@gmail.com",
+        "name": "samsul",
+        "password": "123456",
+        "phone_number": 1231123,
         "isOfficer": true,
-        "createdAt": "2023-09-15T12:43:37.593Z",
-        "updatedAt": "2023-09-15T12:43:08.779Z"
+        "createdAt": "2023-09-16T10:24:08.263Z",
+        "updatedAt": "2023-09-16T10:24:08.263Z"
     }
-    
 parking-places:
 {
     "id": 1,

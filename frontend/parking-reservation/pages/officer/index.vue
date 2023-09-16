@@ -38,27 +38,46 @@
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
-            <tr key="{key}">
-              <td class="px-6 py-4 whitespace-no-wrap">1</td>
-              <td class="px-6 py-4 whitespace-no-wrap">A-1</td>
-              <td class="px-6 py-4 whitespace-no-wrap">Pekalongan</td>
+            <tr v-for="(r, index) in reservation" :key="r.id">
+              <td class="px-6 py-4 whitespace-no-wrap">{{ index + 1 }}</td>
               <td class="px-6 py-4 whitespace-no-wrap">
-                agunghaeruddin@gmail.com
+                {{ r.parking_spots.name.toUpperCase() }}
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap">
+                {{ r.parking_places.location }}
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap">
+                {{ r.user.email }}
               </td>
               <td class="px-6 py-4 whitespace-no-wrap">
                 <div
-                  class="p-[.2rem] bg-red-200 border-red-300 border-[1.3px] rounded-md w-auto flex justify-center text-red-400"
+                  :class="{
+                    'bg-green-200 border-green-300 text-green-400 text-green-400':
+                      r.payment_status,
+                    'bg-red-200 border-red-300 text-red-400 text-red-400':
+                      !r.payment_status,
+                  }"
+                  class="p-[.2rem] border-[1.3px] rounded-md w-auto flex justify-center"
                 >
-                  unpaid
+                  {{ r.payment_status ? "Paid" : "Unpaid" }}
                 </div>
               </td>
               <td
                 class="px-6 py-4 whitespace-no-wrap flex justify-center py-[1rem]"
               >
                 <button
+                  v-if="!r.payment_status"
+                  @click="confirm(r.id)"
                   class="p-[.5rem] bg-green-200 rounded-md hover:bg-green-300 shadow-md"
                 >
                   Confirm
+                </button>
+                <button
+                  v-if="r.payment_status"
+                  @click="deleteReservation(r.id)"
+                  class="p-[.5rem] bg-red-200 rounded-md hover:bg-red-300 shadow-md"
+                >
+                  delete
                 </button>
               </td>
             </tr>
@@ -70,6 +89,28 @@
 </template>
 
 <script setup>
+definePageMeta({
+  layout: "officer",
+});
+
+const { data: reservation } = useFetch("http://localhost:3001/reservation");
+console.log(reservation.value);
+const confirm = (id) => {
+  const { data: reservation } = useFetch(
+    "http://localhost:3001/reservation/confirm/" + id,
+    {
+      method: "post",
+    }
+  );
+};
+const deleteReservation = (id) => {
+  const { data: reservation } = useFetch(
+    "http://localhost:3001/reservation/" + id,
+    {
+      method: "delete",
+    }
+  );
+};
 </script>
 
 <style lang="scss" scoped>

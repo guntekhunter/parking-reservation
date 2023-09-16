@@ -1,10 +1,37 @@
 const prisma = require("../db/index");
 
 async function getAllReservation() {
-  const reservation = await prisma.reservation.findMany();
-
-  if (!reservation) {
+  const reservations = await prisma.reservation.findMany({
+    include: {
+      // Include related data based on IDs from the reservation table
+      user: {
+        select: { email: true }, // Select the user's name
+      },
+      parking_places: {
+        select: { location: true }, // Select the parking place's location
+      },
+      parking_spots: {
+        select: { name: true }, // Select the parking spot's name
+      },
+    },
+  });
+  if (!reservations) {
     throw Error("reservation Not Found");
+  }
+  return reservations;
+}
+
+async function confirmReservation(reservation_id) {
+  const reservation = await prisma.reservation.update({
+    where: {
+      id: reservation_id,
+    },
+    data: {
+      payment_status: true,
+    },
+  });
+  if (!reservation) {
+    throw Error("Reservation Not Found");
   }
   return reservation;
 }
@@ -83,4 +110,5 @@ module.exports = {
   postReservation,
   putReservation,
   deleteReservation,
+  confirmReservation,
 };
