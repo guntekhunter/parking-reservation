@@ -54,6 +54,7 @@ model reservation {
   parking_spot_id  Int
   parking_place_id Int
   payment_status   Boolean
+  time             String
   createdAt        DateTime        @default(now())
   updatedAt        DateTime        @updatedAt
   user             user            @relation(fields: [user_id], references: [id])

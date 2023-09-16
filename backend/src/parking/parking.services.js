@@ -74,9 +74,27 @@ async function deleteParking(parking_id) {
   return parking;
 }
 
+async function putParking(spot_id, newSpotData) {
+  const reservation = await prisma.parking_spots.update({
+    where: {
+      id: spot_id,
+    },
+    data: {
+      isAvailable: newSpotData.isAvailable,
+    },
+  });
+  const data = await prisma.parking_spots.findMany();
+
+  if (!reservation) {
+    throw Error("reservation Not Found");
+  }
+  return data;
+}
+
 module.exports = {
   getAllParking,
   getOneParking,
   postParkingSpots,
   deleteParking,
+  putParking,
 };

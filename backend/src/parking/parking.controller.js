@@ -3,6 +3,7 @@ const { getAllParking } = require("./parking.services");
 const { getOneParking } = require("./parking.services");
 const { postParkingSpots } = require("./parking.services");
 const { deleteParking } = require("./parking.services");
+const { putParking } = require("./parking.services");
 
 const router = express.Router();
 
@@ -31,6 +32,16 @@ router.post("/", async (req, res) => {
     const newParkingSpots = req.body;
     const parkingSpots = await postParkingSpots(newParkingSpots);
     res.send(parkingSpots);
+  } catch (err) {
+    res.status(400).send(err.message);
+  }
+});
+router.put("/:id", async (req, res) => {
+  try {
+    const spot_id = parseInt(req.params.id);
+    const newSpotData = req.body;
+    const spot = await putParking(spot_id, newSpotData);
+    res.send(spot);
   } catch (err) {
     res.status(400).send(err.message);
   }

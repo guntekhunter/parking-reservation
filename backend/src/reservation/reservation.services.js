@@ -26,6 +26,7 @@ async function postReservation(newReservationData) {
       parking_spot_id: newReservationData.parking_spot_id,
       parking_place_id: newReservationData.parking_place_id,
       payment_status: newReservationData.payment_status,
+      time: newReservationData.time,
     },
   });
 

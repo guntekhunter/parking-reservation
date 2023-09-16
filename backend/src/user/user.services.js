@@ -1,4 +1,5 @@
 const prisma = require("../db/index");
+const bcrypt = require("bcrypt");
 
 async function getAllUser() {
   const users = await prisma.user.findMany();
@@ -8,13 +9,31 @@ async function getAllUser() {
   }
   return users;
 }
+
+async function loginUser(userData) {
+  const user = await prisma.user.findFirst({
+    where: {
+      email: userData.email,
+    },
+  });
+  if (!user) {
+    throw Error("user Not Found");
+  }
+
+  const passwordMatch = await bcrypt.compare(userData.password, user.password);
+
+  if (!passwordMatch) {
+    throw Error("Incorrect password");
+  }
+  return user;
+}
 async function postUser(newUserData) {
-  console.log(newUserData);
+  const hashedPassword = await bcrypt.hash(newUserData.password, 10);
   const user = await prisma.user.create({
     data: {
       email: newUserData.email,
       name: newUserData.name,
-      password: newUserData.password,
+      password: hashedPassword,
       phone_number: newUserData.phone_number,
       isOfficer: newUserData.isOfficer,
     },
@@ -39,4 +58,4 @@ async function deleteUser(user_id) {
   return user;
 }
 
-module.exports = { getAllUser, postUser, deleteUser };
+module.exports = { getAllUser, postUser, deleteUser, loginUser };
