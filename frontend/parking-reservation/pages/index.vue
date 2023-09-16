@@ -66,8 +66,10 @@ const login = async () => {
     }
   );
   if (responseData.value.isOfficer !== true) {
+    localStorage.setItem("user", responseData.value.id);
     router.push("/parking-places");
   } else {
+    localStorage.setItem("user", responseData.value.id);
     router.push("/officer");
   }
 };

@@ -69,6 +69,7 @@ const { emit } = defineEmits(["confirm"]);
 const show = ref(false);
 const confirmed = ref(false);
 const inputValue = ref("");
+const id = ref(parseInt(localStorage.getItem("user")));
 
 const getValue = () => {
   console.log("Input Value:", inputValue.value);
@@ -82,7 +83,7 @@ const { placeId, spotId, spotName, location, amount } = defineProps([
   "amount",
 ]);
 const data = ref({
-  user_id: 1,
+  user_id: id,
   parking_spot_id: spotId,
   parking_place_id: placeId,
   payment_status: false,
@@ -111,15 +112,7 @@ const createReservation = async () => {
       },
     }
   );
-  const { data: spotUpdate } = await useFetch(
-    "http://localhost:3001/parking/" + spotId,
-    {
-      method: "put",
-      body: {
-        isAvalable: false,
-      },
-    }
-  );
+  console.log(responseData);
 };
 </script>
 
