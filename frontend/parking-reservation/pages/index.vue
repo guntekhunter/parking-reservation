@@ -10,6 +10,7 @@
           class="w-full h-[2rem] px-[1rem] rounded-md border-[1.4px] border-gray-200 text-[.9rem]"
           type="text"
           autoComplete="off"
+          v-model="emailValue"
         />
       </div>
       <div class="space-y-2">
@@ -19,6 +20,7 @@
             class="w-full h-[2rem] px-[1rem] rounded-md border-[1.4px] border-gray-200 text-[.9rem]"
             type="password"
             autoComplete="off"
+            v-model="passwordValue"
           />
           <Image src="" alt="" />
         </div>
@@ -30,8 +32,7 @@
       </div>
       <div class="flex justify-around pt-[1rem]">
         <NuxtLink
-          to="/parking-places"
-          onClick="{loginHandler}"
+          @click="login"
           class="px-[1rem] rounded-md bg-[#793FDF] text-white w-full h-[2.5rem] hover:bg-[#793FDF] flex justify-around items-center"
         >
           <p>Login</p>
@@ -42,7 +43,32 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 definePageMeta({
   layout: "login",
 });
+
+const router = useRouter();
+
+const emailValue = ref("");
+const passwordValue = ref("");
+
+const login = async () => {
+  const { data: responseData } = await useFetch(
+    "http://localhost:3001/users/login",
+    {
+      method: "post",
+      body: {
+        email: emailValue.value,
+        password: passwordValue.value,
+      },
+    }
+  );
+  if (responseData.value.isOfficer !== true) {
+    router.push("/parking-places");
+  } else {
+    router.push("/officer");
+  }
+};
 </script>

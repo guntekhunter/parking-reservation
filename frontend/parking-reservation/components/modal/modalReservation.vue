@@ -90,7 +90,6 @@ const data = ref({
 
 const handleConfirm = () => {
   createReservation();
-  console.log(inputValue.value);
   show.value = true;
   confirmed.value = true;
   setTimeout(() => {

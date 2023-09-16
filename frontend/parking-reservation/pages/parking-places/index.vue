@@ -1,4 +1,3 @@
-
 <template>
   <div class="flex w-full justify-center">
     <div class="w-[80%] py-5">
