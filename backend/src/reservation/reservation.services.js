@@ -29,6 +29,14 @@ async function postReservation(newReservationData) {
       time: newReservationData.time,
     },
   });
+  const editSpot = await prisma.parking_spots.update({
+    where: {
+      id: newReservationData.parking_spot_id,
+    },
+    data: {
+      isAvailable: false,
+    },
+  });
 
   if (!reservation) {
     throw Error("Failed to make reservation");

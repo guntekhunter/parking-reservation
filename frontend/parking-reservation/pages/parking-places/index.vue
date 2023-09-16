@@ -23,6 +23,5 @@ import CardPlace from "../../components/cardPlace.vue";
 const { pending, data: parkingSpots } = useLazyFetch(
   "http://localhost:3001/parking-place"
 );
-console.log(parkingSpots);
 </script>
 
