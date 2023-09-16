@@ -10,15 +10,14 @@
     />
     <div class="w-[80%] py-5 space-y-5">
       <div>
-        <NuxtLink to="/parking-places">Back</NuxtLink>
-        <div class="font-bold text-[1.5rem]">PEJATEN</div>
-        <div class="text-[1rem]">Jl. Malakaji jawa tengah</div>
+        <div class="font-bold text-[1.5rem]">{{ parkingSpots.place.name }}</div>
+        <div class="text-[1rem]">{{ parkingSpots.place.location }}</div>
       </div>
       <div
         class="grid grid-cols-6 gap-y-[4rem] divide-x-2 divide-dashed divide-gray-200 divide-current"
       >
         <Card
-          v-for="p in parkingSpots"
+          v-for="p in parkingSpots.spots"
           :key="p.id"
           @click="showModal(p.id)"
           :name="p.name"
