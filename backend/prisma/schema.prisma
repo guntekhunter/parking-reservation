@@ -53,8 +53,6 @@ model reservation {
   user_id          Int
   parking_spot_id  Int
   parking_place_id Int
-  start_date       DateTime
-  end_date         DateTime
   payment_status   Boolean
   createdAt        DateTime        @default(now())
   updatedAt        DateTime        @updatedAt

@@ -7,6 +7,9 @@
       @confirm="confirm"
       :placeId="placeId"
       :spotId="spotId"
+      :location="parkingSpots.place.location"
+      :amount="parkingSpots.place.amount"
+      :spotName="spotName"
     />
     <div class="w-[80%] py-5 space-y-5">
       <div>
@@ -19,7 +22,7 @@
         <Card
           v-for="p in parkingSpots.spots"
           :key="p.id"
-          @click="showModal(p.id)"
+          @click="showModal(p.id, p.name)"
           :name="p.name"
           :isAvailable="p.isAvailable"
         />
@@ -40,10 +43,12 @@ definePageMeta({
 const { id } = useRoute().params;
 const placeId = parseInt(id);
 const spotId = ref(null);
+const spotName = ref(null);
 
-const showModal = (id) => {
+const showModal = (id, name) => {
   show.value = true;
   spotId.value = id;
+  spotName.value = name;
 };
 const closeConfirm = () => {
   show.value = false;

@@ -25,15 +25,14 @@ async function postReservation(newReservationData) {
       user_id: newReservationData.user_id,
       parking_spot_id: newReservationData.parking_spot_id,
       parking_place_id: newReservationData.parking_place_id,
-      start_date: newReservationData.start_date,
-      end_date: newReservationData.end_date,
       payment_status: newReservationData.payment_status,
     },
   });
 
   if (!reservation) {
-    throw Error("failed to make reservation");
+    throw Error("Failed to make reservation");
   }
+
   return reservation;
 }
 
@@ -45,8 +44,7 @@ async function putReservation(reservation_id, newReservationData) {
     data: {
       user_id: newReservationData.user_id,
       parking_spot_id: newReservationData.parking_spot_id,
-      start_date: newReservationData.start_date,
-      end_date: newReservationData.end_date,
+      parking_place_id: newReservationData.parking_spot_id,
       payment_status: newReservationData.payment_status,
     },
   });

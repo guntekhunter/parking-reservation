@@ -36,7 +36,15 @@ async function getOneParking(parking_id) {
   if (!parking) {
     throw Error("Parking Spots Not Found");
   }
-  return parking;
+  const parkingPlace = await prisma.parking_places.findFirst({
+    where: {
+      id: parking.id_parking_place,
+    },
+  });
+  return {
+    parking,
+    parkingPlace,
+  };
 }
 async function postParkingSpots(newParkingSpots) {
   const parking = await prisma.parking_spots.create({
