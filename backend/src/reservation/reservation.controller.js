@@ -60,7 +60,8 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const reservation_id = parseInt(req.params.id);
-    const reservation = await deleteReservation(reservation_id);
+    const newParking = req.body;
+    const reservation = await deleteReservation(reservation_id, newParking);
     res.send(reservation);
   } catch (err) {
     res.status(400).send(err.message);

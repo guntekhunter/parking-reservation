@@ -25,11 +25,6 @@
           <Image src="" alt="" />
         </div>
       </div>
-      <div
-        class="bg-red-200 h-[2rem] flex items-center pl-4 rounded-md border-[1.4px] border-red-300 ${ error"
-      >
-        <p class="text-[.8rem] text-red-500 ${error ?">asdasd</p>
-      </div>
       <div class="flex justify-around pt-[1rem]">
         <NuxtLink
           @click="login"

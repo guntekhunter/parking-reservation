@@ -74,7 +74,7 @@
                 </button>
                 <button
                   v-if="r.payment_status"
-                  @click="deleteReservation(r.id)"
+                  @click="deleteReservation(r.id, r.parking_spot_id)"
                   class="p-[.5rem] bg-red-200 rounded-md hover:bg-red-300 shadow-md"
                 >
                   delete
@@ -103,9 +103,9 @@ const confirm = (id) => {
     }
   );
 };
-const deleteReservation = (id) => {
+const deleteReservation = (id, parking_spot_id) => {
   const { data: reservation } = useFetch(
-    "http://localhost:3001/reservation/" + id,
+    `http://localhost:3001/reservation/${id}?parking_spot_id=${parking_spot_id}`,
     {
       method: "delete",
     }

@@ -95,7 +95,7 @@ const handleConfirm = () => {
   confirmed.value = true;
   setTimeout(() => {
     confirmed.value = false;
-  }, 3000);
+  }, 1000);
 };
 
 const createReservation = async () => {

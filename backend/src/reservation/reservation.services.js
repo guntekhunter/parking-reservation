@@ -91,10 +91,18 @@ async function putReservation(reservation_id, newReservationData) {
   return reservation;
 }
 
-async function deleteReservation(reservation_id) {
+async function deleteReservation(reservation_id, newParking) {
   const reservation = await prisma.reservation.delete({
     where: {
       id: reservation_id,
+    },
+  });
+  const editSpot = await prisma.parking_spots.update({
+    where: {
+      id: newParking.parking_spot_id,
+    },
+    data: {
+      isAvailable: true,
     },
   });
 
