@@ -105,9 +105,12 @@ const confirm = (id) => {
 };
 const deleteReservation = (id, parking_spot_id) => {
   const { data: reservation } = useFetch(
-    `http://localhost:3001/reservation/${id}?parking_spot_id=${parking_spot_id}`,
+    `http://localhost:3001/reservation/${id}`,
     {
       method: "delete",
+      body: {
+        parking_spot_id: parking_spot_id,
+      },
     }
   );
 };
