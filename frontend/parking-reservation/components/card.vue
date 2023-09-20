@@ -7,11 +7,11 @@
       :class="{ hidden: !show, '': show }"
       class="h-full p-[.5srem] space-y-4"
     >
-      <div
+      <!-- <div
         class="bg-green-200 border-green-400 border border-1 rounded-md py-2 px-2 text-[.8rem] text-green-400 flex justify-center"
       >
         Yours
-      </div>
+      </div> -->
       <div class="flex justify-center">
         <img src="~/assets/image/car.png" alt="" class="w-[4rem]" />
       </div>
